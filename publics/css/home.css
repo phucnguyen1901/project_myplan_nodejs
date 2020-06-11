@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+
+.title{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 100px;
+    height: auto;
+    background-color: green;
+    text-align: center;
+    color:white
+}
+
+ul{
+    color: white;
+    font-weight: bold;
+    margin-top:20px;
+}
+
+ul li {
+    list-style-type: none;
+    float: left;
+    margin-left:10px;
+}
+
+ul li a{
+    font-size: 30px;
+    height: 50px;
+}
+
+/* .show {
+    margin-top : 50px;
+    border: 1px solid red;
+    width: 500px;
+    height: 500px;
+} */
+
+
+.form-submit{
+    /* border: 1px solid red; */
+    width: 400px;
+    height: 70px;
+    position: absolute;
+    right: 470px;
+    bottom: 300px;
+    /* background-color: orange; */
+    display: none;
+}

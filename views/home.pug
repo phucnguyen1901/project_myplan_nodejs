@@ -1,0 +1,82 @@
+
+extends ./basic.pug
+
+block title
+    title Home
+
+block css
+    link(rel="stylesheet", href="css/home.css")
+
+block content
+    .title MY PLANS
+    .clearfix
+        ul
+            li 
+                a.btn.btn-info.btn-lg Tất cả kế hoạch
+            li 
+                a.btn.btn-info.btn-lg Tạo kế hoạch mới
+
+
+
+    .container(style="width:800px;")
+        -let stt = 0
+        while stt < plans.length
+            .card.text-center.mt-3.border.border-success
+                .card-header.text-success= plans[stt].name
+                .card-body
+                    h5.card-title= Description
+                    p.card-text With supporting text below as a natural lead-in to additional content.
+                    p
+                        //- button.btn-confirm.btn.btn-info Click(Xác nhận đã hoàn thành hôm nay)
+                        // Button trigger modal
+                        button.btn.btn-info(type='button', data-toggle='modal', data-target=`#modelId${stt++}`)
+                            | Click(Xác nhận đã hoàn thành hôm nay)
+                        // Modal
+                        .modal.fade(id=`modelId${stt-1}`,tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+                            .modal-dialog(role='document')
+                                .modal-content
+                                    .modal-header
+                                        h5.modal-title Modal title
+                                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                            span(aria-hidden='true') &times;
+                                    .modal-body
+                                        | Body
+                                    .modal-footer
+                                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                        form(action="./users", method="post")
+                                            input(type="hidden", name="planName",value=plans[stt-1].name)
+                                            button.btn.btn-primary Save
+
+                    button.btn.btn-primary.mt-3(type='button', data-toggle='collapse', data-target=`#collapseExample${stt-1}`, aria-expanded='false', aria-controls='collapseExample')
+                        | Show Result
+                    .collapse(id=`collapseExample${stt-1}`)
+                        .card.card-body
+                            .container.show
+                                - let n = 0;
+                                while n < 10
+                                    img(src="images/iconCheck.png", name=n++)
+                .card-footer.text-muted
+                    | 2 days ago
+
+
+    
+
+
+
+
+    //- .form-submit
+    //-     .card(style='width: 30rem;')
+    //-         .card-body
+    //-             p.card-text
+    //-                 |Bạn muốn xác nhận công việc hôm nay đã hoàn thành
+    //-             span
+    //-                 form(action="/",method="post")
+    //-                     input(type="hidden", name="idUser",value="1")
+    //-                     a.btn.btn-info Xác Nhận
+    //-                     a.btn.btn-danger Hủy
+
+
+                
+
+block js
+    script(src="js/form-submit.js")

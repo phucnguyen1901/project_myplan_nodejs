@@ -1,0 +1,26 @@
+
+body{
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../images/login.jpg');
+    /* background-size: auto 1000px;
+    background-repeat: no-repeat; */
+}
+
+.login {
+    color: pink;
+    padding: 50px;
+    margin: 200px auto;
+    width: 600px;
+    height: 300px;
+}
+
+/* .register{
+    margin: 10px 10px;
+    color: white;
+} */
+
+.btnlogin{
+    margin: 0px 10px 0px 130px;
+}
+

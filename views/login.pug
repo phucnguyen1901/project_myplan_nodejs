@@ -1,0 +1,23 @@
+extends ./basic.pug
+
+block title
+    title Login
+block css 
+    link(rel="stylesheet", href="css/login.css")
+block content
+    .login
+        form
+            table
+                tr
+                    td 
+                        label Username &nbsp
+                    td
+                        input.form-control(type="text",name="username")
+                tr
+                    td 
+                        label Password
+                    td
+                        input.form-control(type="password",name="password")
+
+            button.btn.btn-info.btn-lg.btnlogin.mt-3 Login
+            button.btn.btn-info.btn-lg.register.mt-3 Register

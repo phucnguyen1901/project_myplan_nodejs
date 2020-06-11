@@ -1,0 +1,25 @@
+//- extends ./basic.pug
+
+//- block content
+//-     .container
+//-         h1 Go to B
+//-         #content
+//-         button GO
+
+
+
+
+
+//- block js
+//-     script(src="js/ajax.js")
+
+extends ./basic.pug
+
+block content
+    #content
+      h2 Let jQuery AJAX Change This Text
+      button(onclick="ajax()") CLick
+
+block js
+    script(src="js/ajax.js")
+
