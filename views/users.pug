@@ -7,9 +7,10 @@ block content
     //-         h1= value.name
     //-         h2= value.age
 
-    //- form(action="/",method="post")
-    //-     button.btn.btn-primary Save
-    h1= name
 
+    each value in plans
+        each val in value.plans
+            h2= val.nameplans
+            h2= val.date
 
 
