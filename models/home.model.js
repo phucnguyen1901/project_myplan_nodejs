@@ -1,27 +1,29 @@
 
+const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
-
-const myPlans = new mongoose.Schema({
-    name: String,
-    age: Number
+const user = new mongoose.Schema({
+    name:String,
+    username:String,
+    password:String,
+    plans: [{
+        id: mongoose.Schema.Types.ObjectId,
+        namePlan:String,
+        count:Number,
+        date:Date
+    }]
 })
 
-const plans = mongoose.model('plans',myPlans)
 
-module.exports = plans
+module.exports = mongoose.model('users',user)
 
 
-// const mongoose = require('mongoose')
 
-// const myPlans = new mongoose.Schema({
-//     name: String,
-//     age: Number
-// })
 
-// const plans = mongoose.model('plans',myPlans)
 
-// module.exports = plans
+
+
+
+
 
 
 

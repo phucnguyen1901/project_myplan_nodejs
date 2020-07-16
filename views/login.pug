@@ -6,13 +6,13 @@ block css
     link(rel="stylesheet", href="css/login.css")
 block content
     .login
-        form
+        form(action="/login/handleLogin", method="post")
             table
                 tr
                     td 
                         label Username &nbsp
                     td
-                        input.form-control(type="text",name="username")
+                        input.form-control(type="text",name="username", value=username)
                 tr
                     td 
                         label Password
@@ -21,3 +21,6 @@ block content
 
             button.btn.btn-info.btn-lg.btnlogin.mt-3 Login
             button.btn.btn-info.btn-lg.register.mt-3 Register
+    
+    if errorMessage
+        .h3.text-danger= errorMessage
