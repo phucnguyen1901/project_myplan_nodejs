@@ -36,4 +36,4 @@ app.use('/login',loginRouter);
 app.use('/',homeRouter);
 
 
-app.listen(port, ()=> console.log('Server started'))
+app.listen(port, ()=> console.log('Server started with port : '+port))
