@@ -10,9 +10,9 @@ require('dotenv/config');
 const mongoose = require('mongoose');
 
 mongoose.connect(
-   process.env.MONGO_URL,  
-  { useNewUrlParser:true },
-    ()=> console.log("Connect DB is success")
+  process.env.MONGO_URL,  
+  {useNewUrlParser:true },
+  ()=> console.log("Connect DB is success")
 )
 
 const app = express();
