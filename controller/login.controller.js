@@ -21,5 +21,5 @@ module.exports.login = async (req,res) =>{
     }else{
         res.render('login',{errorMessage:"Tài khoản không tồn tại",username:username});
     }
-    console.log(result[0]._id);
+    // console.log(result[0]._id);
 }
