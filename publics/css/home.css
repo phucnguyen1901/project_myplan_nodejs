@@ -26,6 +26,7 @@ input {
 }
 
 #footer{
+    margin-top:10px;
     position:absolute;
     background-color: black;
     width: 100%;
@@ -38,4 +39,8 @@ input {
 
 #main{
     position: relative;
+}
+
+.mgb{
+    margin-bottom: 20px;
 }
