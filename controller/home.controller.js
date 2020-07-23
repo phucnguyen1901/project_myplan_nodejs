@@ -71,7 +71,8 @@ module.exports.confirmComplete = (req,res)=>{
 module.exports.homePost = async (req,res) =>{
     let planNewName = req.body.nameCreate;
     let idMain = req.body.idCreate;
-    let now = moment.tz(Date.now(), "Asia/Ho_Chi_Minh");
+    let now =  new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"});
+    console.log(b);
     let newPlan = {"namePlan":planNewName,"count":0,"date": now};
     user.findByIdAndUpdate(
         {_id:idMain},
