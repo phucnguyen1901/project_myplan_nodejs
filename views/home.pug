@@ -8,31 +8,32 @@ block css
     link(rel="stylesheet", href="/css/home.css")
 
 block content
-    .title MY PLANS
-    h1.mt-3.ml-3 Hello,
-        span.text-success= Name
-        span 
-            form(action="/out" method="post")
-                input(type="hidden", name="Out",value="1")
-                button.btn.btn-danger Thoát
-        .addPlan
-            a.btn.btn-info.text-light.btn-lg(type='button', data-toggle='modal', data-target='#modelIdCreate') Tạo kế hoạch mới
-            // Modal
-            #modelIdCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
-                .modal-dialog(role='document')
-                    .modal-content
-                        .modal-header
-                            h5.modal-title.text-success Thêm kế hoạch mới
-                            button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                span(aria-hidden='true') &times;
-                        .modal-body
-                            form(action="./create",method="post")
-                                label.text-success.mr-4 Tên kế hoạch:
-                                input.mr-3(type="text", name="nameCreate")
-                                input(type="hidden", name="idCreate",value=plans[0]._id)
-                                button.btn.btn-primary Save
-                        .modal-footer
-                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+    .container
+        img#title(src="/images/my_plans2.jpg")
+        h1.mt-3.ml-3 Hello,
+            span.text-success= Name
+            span 
+                form(action="/out" method="post")
+                    input(type="hidden", name="Out",value="1")
+                    button.btn.btn-danger Thoát
+            .addPlan
+                a.btn.btn-info.text-light.btn-lg(type='button', data-toggle='modal', data-target='#modelIdCreate') Tạo kế hoạch mới
+                // Modal
+                #modelIdCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+                    .modal-dialog(role='document')
+                        .modal-content
+                            .modal-header
+                                h5.modal-title.text-success Thêm kế hoạch mới
+                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                    span(aria-hidden='true') &times;
+                            .modal-body
+                                form(action="./create",method="post")
+                                    label.text-success.mr-4 Tên kế hoạch:
+                                    input.mr-3(type="text", name="nameCreate")
+                                    input(type="hidden", name="idCreate",value=plans[0]._id)
+                                    button.btn.btn-primary Save
+                            .modal-footer
+                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
 
 
 
@@ -53,7 +54,6 @@ block content
                         h5.card-title
                         p.card-text= val.date
                         p
-                            //- button.btn-confirm.btn.btn-info Click(Xác nhận đã hoàn thành hôm nay)
                             // Button trigger modal
                             button.btn.btn-info(type='button', data-toggle='modal', data-target=`#modelId${i++}`)
                                 | Click(Xác nhận đã hoàn thành hôm nay)
@@ -107,6 +107,6 @@ block content
                     .card-footer.text-muted
                         | 2 days ago
 
-
+    #footer.mt-3 Good Luck
 block js
     script(src="js/form-submit.js")

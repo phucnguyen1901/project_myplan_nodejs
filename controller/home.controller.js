@@ -2,6 +2,7 @@
 const user = require('../models/home.model');
 const { render } = require('pug');
 const { response } = require('express');
+const moment = require('moment-timezone');
 
 module.exports.home = async (req,res) =>{
     let a = req.session.idUsername;
@@ -66,10 +67,12 @@ module.exports.confirmComplete = (req,res)=>{
 }
 
 
+
 module.exports.homePost = async (req,res) =>{
     let planNewName = req.body.nameCreate;
-    let idMain = req.body.idCreate
-    let newPlan = {"namePlan":planNewName,"count":0,"date":new Date};
+    let idMain = req.body.idCreate;
+    let now = moment.tz(Date.now(), "Asia/Ho_Chi_Minh");
+    let newPlan = {"namePlan":planNewName,"count":0,"date": now};
     user.findByIdAndUpdate(
         {_id:idMain},
         {$push:{plans:newPlan}},
