@@ -33,5 +33,9 @@ input {
     color: white;
     text-align: center;
     line-height: 50px;
-    bottom: 0px;
+    bottom: 0;
+}
+
+#main{
+    position: relative;
 }

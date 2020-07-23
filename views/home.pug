@@ -8,105 +8,106 @@ block css
     link(rel="stylesheet", href="/css/home.css")
 
 block content
-    .container
-        img#title(src="/images/my_plans2.jpg")
-        h1.mt-3.ml-3 Hello,
-            span.text-success= Name
-            span 
-                form(action="/out" method="post")
-                    input(type="hidden", name="Out",value="1")
-                    button.btn.btn-danger Thoát
-            .addPlan
-                a.btn.btn-info.text-light.btn-lg(type='button', data-toggle='modal', data-target='#modelIdCreate') Tạo kế hoạch mới
-                // Modal
-                #modelIdCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
-                    .modal-dialog(role='document')
-                        .modal-content
-                            .modal-header
-                                h5.modal-title.text-success Thêm kế hoạch mới
-                                button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                    span(aria-hidden='true') &times;
-                            .modal-body
-                                form(action="./create",method="post")
-                                    label.text-success.mr-4 Tên kế hoạch:
-                                    input.mr-3(type="text", name="nameCreate")
-                                    input(type="hidden", name="idCreate",value=plans[0]._id)
-                                    button.btn.btn-primary Save
-                            .modal-footer
-                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+    #main
+        .container
+            img#title(src="/images/my_plans2.jpg")
+            h1.mt-3.ml-3 Hello,
+                span.text-success= Name
+                span 
+                    form(action="/out" method="post")
+                        input(type="hidden", name="Out",value="1")
+                        button.btn.btn-danger Thoát
+                .addPlan
+                    a.btn.btn-info.text-light.btn-lg(type='button', data-toggle='modal', data-target='#modelIdCreate') Tạo kế hoạch mới
+                    // Modal
+                    #modelIdCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+                        .modal-dialog(role='document')
+                            .modal-content
+                                .modal-header
+                                    h5.modal-title.text-success Thêm kế hoạch mới
+                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                .modal-body
+                                    form(action="./create",method="post")
+                                        label.text-success.mr-4 Tên kế hoạch:
+                                        input.mr-3(type="text", name="nameCreate")
+                                        input(type="hidden", name="idCreate",value=plans[0]._id)
+                                        button.btn.btn-primary Save
+                                .modal-footer
+                                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
 
 
 
 
-    .container(style="width:800px;")
-        //- -let stt = 0
-        //- while stt < plans.length
-        -let i = 1
-        //- -let id = plans.
-        each value in plans
-            each val in value.plans
-                //- -i++
-                //- h2= val.namePlan
-                //- h2= val.date
-                .card.text-center.mt-3.border.border-success
-                    .card-header.text-success.h1= val.namePlan
-                    .card-body
-                        h5.card-title
-                        p.card-text= val.date
-                        p
-                            // Button trigger modal
-                            button.btn.btn-info(type='button', data-toggle='modal', data-target=`#modelId${i++}`)
-                                | Click(Xác nhận đã hoàn thành hôm nay)
-                            // Modal
-                            .modal.fade(id=`modelId${i-1}`,tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
-                                .modal-dialog(role='document')
-                                    .modal-content
-                                        .modal-header
-                                            h5.modal-title Modal title
-                                            button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                                span(aria-hidden='true') &times;
-                                        .modal-body
-                                            | Xác nhận ngay
-                                        .modal-footer
-                                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                                            form(action="./confirm", method="post")
-                                                input(type="hidden", name="planNameConfirm",value=val.namePlan)
-                                                input(type="hidden", name="dateConfirm", value=val.date)
-                                                input(type="hidden" ,name="countConfirm", value=val.count)
-                                                input(type="hidden", name="id", value=val._id)
-                                                input(type="hidden", name="idMain",value=value._id)
-                                                button.btn.btn-primary Save
-                            
-                            button.btn.btn-danger.mt-4(type='button', data-toggle='modal', data-target=`#modelIdDelete${i++}`)
-                                | Xóa
-                            // Modal2
-                            .modal.fade(id=`modelIdDelete${i-1}`,tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
-                                .modal-dialog(role='document')
-                                    .modal-content
-                                        .modal-header
-                                            h5.modal-title Modal title
-                                            button.close(type='button', data-dismiss='modal', aria-label='Close')
-                                                span(aria-hidden='true') &times;
-                                        .modal-body
-                                            | Xác nhận xóa ngay
-                                        .modal-footer
-                                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                                            form(action="./confirmDelete", method="post")
-                                                input(type="hidden", name="idMain",value=value._id)
-                                                input(type="hidden", name="id",value=val._id)
-                                                button.btn.btn-primary Save
+        .container(style="width:800px;")
+            //- -let stt = 0
+            //- while stt < plans.length
+            -let i = 1
+            //- -let id = plans.
+            each value in plans
+                each val in value.plans
+                    //- -i++
+                    //- h2= val.namePlan
+                    //- h2= val.date
+                    .card.text-center.mt-3.border.border-success
+                        .card-header.text-success.h1= val.namePlan
+                        .card-body
+                            h5.card-title
+                            p.card-text= val.date
+                            p
+                                // Button trigger modal
+                                button.btn.btn-info(type='button', data-toggle='modal', data-target=`#modelId${i++}`)
+                                    | Click(Xác nhận đã hoàn thành hôm nay)
+                                // Modal
+                                .modal.fade(id=`modelId${i-1}`,tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+                                    .modal-dialog(role='document')
+                                        .modal-content
+                                            .modal-header
+                                                h5.modal-title Modal title
+                                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                                    span(aria-hidden='true') &times;
+                                            .modal-body
+                                                | Xác nhận ngay
+                                            .modal-footer
+                                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                                form(action="./confirm", method="post")
+                                                    input(type="hidden", name="planNameConfirm",value=val.namePlan)
+                                                    input(type="hidden", name="dateConfirm", value=val.date)
+                                                    input(type="hidden" ,name="countConfirm", value=val.count)
+                                                    input(type="hidden", name="id", value=val._id)
+                                                    input(type="hidden", name="idMain",value=value._id)
+                                                    button.btn.btn-primary Save
+                                
+                                button.btn.btn-danger.mt-4(type='button', data-toggle='modal', data-target=`#modelIdDelete${i++}`)
+                                    | Xóa
+                                // Modal2
+                                .modal.fade(id=`modelIdDelete${i-1}`,tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+                                    .modal-dialog(role='document')
+                                        .modal-content
+                                            .modal-header
+                                                h5.modal-title Modal title
+                                                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                                    span(aria-hidden='true') &times;
+                                            .modal-body
+                                                | Xác nhận xóa ngay
+                                            .modal-footer
+                                                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                                                form(action="./confirmDelete", method="post")
+                                                    input(type="hidden", name="idMain",value=value._id)
+                                                    input(type="hidden", name="id",value=val._id)
+                                                    button.btn.btn-primary Save
 
-                        button.btn.btn-primary.mt-3(type='button', data-toggle='collapse', data-target=`#collapseExample${i-1}`, aria-expanded='false', aria-controls='collapseExample')
-                            | Show Result
-                        .collapse(id=`collapseExample${i-1}`)
-                            .card.card-body
-                                .container.show
-                                    - let n = 0;
-                                    while n < val.count
-                                        img(src="images/iconCheck.png", name=n++)
-                    .card-footer.text-muted
-                        | 2 days ago
-
-    #footer.mt-3 Good Luck
+                            button.btn.btn-primary.mt-3(type='button', data-toggle='collapse', data-target=`#collapseExample${i-1}`, aria-expanded='false', aria-controls='collapseExample')
+                                | Show Result
+                            .collapse(id=`collapseExample${i-1}`)
+                                .card.card-body
+                                    .container.show
+                                        - let n = 0;
+                                        while n < val.count
+                                            img(src="images/iconCheck.png", name=n++)
+                        .card-footer.text-muted
+                            | 2 days ago
+        if plans[0].plans.length > 0
+            #footer.mt-5 Good Luck
 block js
     script(src="js/form-submit.js")

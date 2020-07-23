@@ -7,6 +7,7 @@ const moment = require('moment-timezone');
 module.exports.home = async (req,res) =>{
     let a = req.session.idUsername;
     let users = await user.find({_id: a})
+    console.log(users);
     res.render('home',{plans:users});
 }
 
