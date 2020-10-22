@@ -1,0 +1,95 @@
+extends ./basic.pug
+
+block title
+    title Vocabulary
+
+block css
+    link(rel="stylesheet", href="/css/home.css")
+block content
+    #main
+        img#title(src="/images/my_plans2.jpg")
+        .container
+            h1.mt-3.ml-3 Hello,
+                span.text-success= Name
+                span 
+                    form(action="/out" method="post")
+                        input(type="hidden", name="Out",value="1")
+                        button.btn.btn-danger Thoát
+                .addPlan
+                    a.btn.btn-info.text-light.btn-lg(type='button', data-toggle='modal', data-target='#modelIdCreate') Tạo chủ đề mới
+                    // Modal
+                    #modelIdCreate.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modelTitleId', aria-hidden='true')
+                        .modal-dialog(role='document')
+                            .modal-content
+                                .modal-header
+                                    h5.modal-title.text-success Thêm kế hoạch mới
+                                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                        span(aria-hidden='true') &times;
+                                .modal-body
+                                    form(action="./createTopic",method="post")
+                                        label.text-success.mr-4 Tên chủ đề:
+                                        input.mr-3(type="text", name="nameTopic")
+                                        //- input(type="hidden", name="idCreate",value=plans[0]._id)
+                                        button.btn.btn-primary Save
+                                .modal-footer
+                                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    a.btn.btn-warning.text-light.btn-lg.ml-2(href='/') MY PLANS
+
+        .container.mt-3#listVocabulary
+            .row
+                -let i = 1
+                each topic in vocabulary
+                    .col-sm-4.d-flex.flex-column
+                            h3.text-success=  topic.topic
+                            h5=  topic.time
+                             // Button trigger modal
+                            button.btn.btn-primary(type='button', data-toggle='modal', data-target=`#exampleModal${i++}`)
+                                | Add Vocabulary
+                            // Modal
+                            .modal.fade( id=`exampleModal${i-1}`,tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                                .modal-dialog(role='document')
+                                    .modal-content
+                                        .modal-header
+                                            h5#exampleModalLabel.modal-title Add Vocabulary
+                                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                                span(aria-hidden='true') &times;
+                                        .modal-body
+                                            form(action="/addVocabulary" method="post")
+                                                label(for="") Add Word
+                                                input(type="text" name="word")
+                                                br
+                                                br
+                                                input(type="hidden", name="idTopic", value=topic._id)
+                                                label(for="") Vietnamese Meaning
+                                                input(type="text" name="vietnamMean")
+                                                button.mt-3.btn.btn-primary(type='submit') Save changes
+                                        .modal-footer
+                                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
+                            // Button trigger modal
+                            button.btn.btn-danger.mt-2.text-light(type='button', data-toggle='modal', data-target=`#addSubModal${i++}`)
+                                | Add Subtitles
+                            // Modal
+                            .modal.fade( id=`addSubModal${i-1}`,tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+                                .modal-dialog(role='document')
+                                    .modal-content
+                                        .modal-header
+                                            h5#exampleModalLabel.modal-title Add Subtitles
+                                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                                span(aria-hidden='true') &times;
+                                        .modal-body
+                                            form(action="/addSubtitles" method="post")
+                                                label Enter String
+                                                textarea.w-100.h-100.form-control(name="String")
+                                                input(type="hidden", name="idMain" value=topic._id)
+                                                button.w-100.btn.btn-success.mt-2(type="submit") Save changes
+                                        .modal-footer
+                                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+
+                            form(action="/getSubtitles" method="post")
+                                input(type="hidden", name="idMain" value=topic._id)
+                                button.w-100.btn.btn-success.mt-2(type="submit") Watch Subtitles
+
+                            form(action="/learnVocabulary" method="post")
+                                input(type="hidden", name="idMain" value=topic._id)
+                                button.w-100.btn.btn-success.mt-2(type="submit") Learn Now

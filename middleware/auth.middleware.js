@@ -1,20 +1,11 @@
+module.exports.requireAuth = (req, res, next) => {
+  if (!req.session.username) {
+    res.redirect("/login");
+    return;
+  }
 
-module.exports.requireAuth = (req,res,next) =>{
+  res.locals.Name = req.session.username;
+//   res.locals.User = req.session.idUsername;
 
-    if(!req.session.username){
-        res.redirect('/login');
-        return;
-    }
-
-    res.locals.Name = req.session.username;
-
-    next();
-}
-
-
-
-
-
-
-
-
+  next();
+};

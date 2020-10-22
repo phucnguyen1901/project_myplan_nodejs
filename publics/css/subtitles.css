@@ -1,0 +1,13 @@
+body {
+  background-color: #333333;
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.subtitles {
+  margin: 20px auto;
+  color: #dddddd;
+  font-size: 18px;
+  font-weight: bold;
+}
