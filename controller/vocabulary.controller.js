@@ -15,9 +15,6 @@ function mix(array) {
 function vocabulary() {
   return {
     async show(req, res) {
-      if (req.session.check && req.session.key && req.session.value) {
-        delete req.session.check, req.session.value, req.session.key;
-      }
       const idUser = req.session.idUsername;
       const vocabulary = await Vocabulary.find({ userId: idUser });
       res.render("homeVocabulary", { vocabulary: vocabulary });
@@ -99,17 +96,17 @@ function vocabulary() {
         req.session.value = value;
       }
       if (!req.session.check) {
-        req.session.check = 0;
+        req.session.check = -1;
       }
       res.render("learnVocabulary");
     },
 
     getLearn(req, res) {
-      console.log(req.session.check);
       res.render("learnVocabulary");
     },
 
     checkVocabulary(req, res) {
+      console.log(req.session.check);
       req.session.check += 1;
       res.redirect("/learnVocabulary");
     },

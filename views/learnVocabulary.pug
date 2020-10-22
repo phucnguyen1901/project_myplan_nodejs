@@ -10,20 +10,17 @@ block content
         form.d-flex.flex-column(action="/checkVocabulary")
             input(type="text" class="input-learn" placeholder="Enter Word")
             //- input(type="hidden", name="mean" value=key[Index])
-            if Index
-                if Index >= Key.length
+            if  Key
+                if  Key.length <= Index
                     a.btn.btn-primary.btn-submit(href="/homeVocabulary") Back to Home
                 else
                     button.btn.btn-primary.btn-submit(type="submit")
             else
                 button.btn.btn-primary.btn-submit(type="submit") Start
-    if Index
-        if Index >= Key.length
-            .container.mean The End
-        else
+
+    if Key 
+        if Key.length >= Index
             .container.mean= Key[Index]
-    else
-        .container.mean= 0
 
 
 
