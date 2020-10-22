@@ -6,6 +6,13 @@ block title
 block css
     link(rel="stylesheet", href="/css/home.css")
 block content
+
+    if Value 
+        if Value.length >= Index
+            .container.mean= Value[Index]
+            .container.d-flex.flex-column
+                .count= `${Index} / ${Value.length}`
+        
     .container
         form.d-flex.flex-column(action="/checkVocabulary")
             input(type="text" class="input-learn" placeholder="Enter Word")
@@ -14,14 +21,18 @@ block content
                 if  Value.length <= Index
                     a.btn.btn-primary.btn-submit(href="/homeVocabulary") Back to Home
                 else
-                    button.btn.btn-primary.btn-submit(type="submit")
+                    button.btn.btn-primary.btn-submit(type="submit") Next
             else
                 button.btn.btn-primary.btn-submit(type="submit") Start
-
-    if Value 
-        if Value.length >= Index
-            .container.mean= Value[Index]
-
+    if Key
+        .container.mt-3
+            .d-flex.flex-column.flex-justify-center
+                button.btn.btn-danger.text-light.btn-submit.mb-2(type='button', data-toggle='collapse', data-target=`#collapseExample${Index}`, aria-expanded='false', aria-controls='collapseExample')
+                    | Show
+                .collapse(id=`collapseExample${Index}`)
+                    .card.card-body.text-center.font-italic.border.border-danger.rounded-20
+                            h3.text-danger= Key[Index]
+                //- button Show
 
 
 
