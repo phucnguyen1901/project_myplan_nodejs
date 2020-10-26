@@ -125,7 +125,7 @@ function vocabulary() {
         const array = await Vocabulary.find({ _id: req.session.idLearn });
         const newArray = array[0].vocabulary;
         const obj = {};
-        obj[key] = value;
+        obj[key.toLowerCase()] = value;
         if (objectInArray(obj, newArray)) {
           req.session.check += 1;
           req.flash("info", "Correct");
