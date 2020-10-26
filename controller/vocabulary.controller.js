@@ -1,3 +1,4 @@
+const session = require("express-session");
 const Vocabulary = require("../models/vocabulary.model");
 
 function mix(array) {
@@ -10,6 +11,19 @@ function mix(array) {
     array.splice(index, 1);
   }
   return newArray;
+}
+
+function objectInArray(element, array) {
+  const key = Object.keys(element).toString();
+  const value = element[key];
+  for (const element of array) {
+    const key2 = Object.keys(element).toString();
+    const value2 = element[key2];
+    if (key2 === key && value === value2) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function vocabulary() {
@@ -91,13 +105,10 @@ function vocabulary() {
           value.push(element[index]);
         }
       }
-      if (!req.session.key && !req.session.value) {
-        req.session.key = key;
-        req.session.value = value;
-      }
-      if (!req.session.check) {
-        req.session.check = -1;
-      }
+      req.session.idLearn = idMain;
+      req.session.key = key;
+      req.session.value = value;
+      req.session.check = -1;
       res.render("learnVocabulary");
     },
 
@@ -105,10 +116,25 @@ function vocabulary() {
       res.render("learnVocabulary");
     },
 
-    checkVocabulary(req, res) {
-      console.log(req.session.check);
-      req.session.check += 1;
-      res.redirect("/learnVocabulary");
+    async checkVocabulary(req, res) {
+      if (req.session.check === -1) {
+        req.session.check += 1;
+        res.redirect("/learnVocabulary");
+      } else {
+        const { key, value } = req.body;
+        const array = await Vocabulary.find({ _id: req.session.idLearn });
+        const newArray = array[0].vocabulary;
+        const obj = {};
+        obj[key] = value;
+        if (objectInArray(obj, newArray)) {
+          req.session.check += 1;
+          req.flash("info", "Correct");
+          res.redirect("/learnVocabulary");
+        } else {
+          req.flash("error", "Incorrect");
+          res.redirect("/learnVocabulary");
+        }
+      }
     },
   };
 }

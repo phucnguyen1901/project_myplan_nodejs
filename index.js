@@ -4,6 +4,8 @@ const homeRouter = require("./routes/home.router");
 const Route = require("./routes/home.router");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const flash = require("express-flash");
+
 require("dotenv/config");
 
 const mongoose = require("mongoose");
@@ -25,6 +27,9 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
+
+app.use(flash());
+
 app.use((req, res, next) => {
   res.locals.Index = req.session.check;
   res.locals.Key = req.session.key;

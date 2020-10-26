@@ -8,5 +8,8 @@ module.exports.deleteSession = (req, res, next) => {
   if (req.session.key) {
     delete req.session.key;
   }
+  if (req.session.idLearn) {
+    delete req.session.idLearn;
+  }
   next();
 };

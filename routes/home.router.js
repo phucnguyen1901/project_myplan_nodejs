@@ -29,7 +29,8 @@ function Route(app) {
   app.post("/addVocabulary", vocabulary().addVocabulary);
   app.get("/learnVocabulary", vocabulary().getLearn);
   app.post("/learnVocabulary", vocabulary().learn);
-  app.get("/checkVocabulary", vocabulary().checkVocabulary);
+  app.post("/checkVocabulary", vocabulary().checkVocabulary);
+  // app.get("/checkVocabulary", vocabulary().checkVocabulary);
   app.post("/addSubtitles", vocabulary().addSubtitles);
   app.post("/getSubtitles", vocabulary().getSubtitle);
 }
