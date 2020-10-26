@@ -19,7 +19,7 @@ block content
                 if  Value.length <= Index
                     a.btn.btn-primary.btn-submit(href="/homeVocabulary") Back to Home
                 else
-                    input(type="text" class="input-learn" placeholder="Enter Word" name="key" autocomplete="off")
+                    input(type="text" class="input-learn" placeholder="Enter Word" name="key" autofocus autocomplete="off" )
                     input(type="hidden", name="value" value=Value[Index])
                     button.btn.btn-primary.btn-submit(type="submit") Next
             else
@@ -39,5 +39,3 @@ block content
             h3.d-flex.justify-content-around.text-success.p-5= messages.info
         if messages.error
             h3.d-flex.justify-content-around.text-danger.p-5= messages.error
-
-//- OK CON De 
